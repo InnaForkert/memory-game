@@ -3,12 +3,12 @@ import "./App.css";
 import { Card } from "./components/Card";
 
 const cardImages = [
-  { src: "../public/img/flower1.png", matched: false },
-  { src: "../public/img/flower2.png", matched: false },
-  { src: "../public/img/flower3.png", matched: false },
-  { src: "../public/img/flower4.png", matched: false },
-  { src: "../public/img/flower5.png", matched: false },
-  { src: "../public/img/flower6.png", matched: false },
+  { src: "/img/flower1.png", matched: false },
+  { src: "/img/flower2.png", matched: false },
+  { src: "/img/flower3.png", matched: false },
+  { src: "/img/flower4.png", matched: false },
+  { src: "/img/flower5.png", matched: false },
+  { src: "/img/flower6.png", matched: false },
 ];
 
 function App() {
