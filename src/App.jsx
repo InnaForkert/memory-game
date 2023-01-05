@@ -16,9 +16,11 @@ function App() {
   const [turns, setTurns] = useState(0);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     if (choiceTwo && choiceOne) {
+      setDisabled(true);
       if (choiceTwo.src === choiceOne.src) {
         setCards((prevCards) => {
           return prevCards.map((el) => {
@@ -34,10 +36,15 @@ function App() {
     }
   }, [choiceOne, choiceTwo]);
 
+  useEffect(() => {
+    shuffleCards();
+  }, []);
+
   function makeATurn() {
     setChoiceTwo(null);
     setChoiceOne(null);
     setTurns((prevTurns) => prevTurns + 1);
+    setDisabled(false);
   }
 
   const shuffleCards = () => {
@@ -46,6 +53,8 @@ function App() {
       .map((el) => ({ ...el, id: Math.random() }));
     setCards(shuffledCards);
     setTurns(0);
+    setChoiceOne(null);
+    setChoiceTwo(null);
   };
 
   const handleChoice = (card) => {
@@ -55,7 +64,7 @@ function App() {
   return (
     <div className="App">
       <h1>Flower Match</h1>
-      <button onClick={shuffleCards}>Start game</button>
+      <button onClick={shuffleCards}>New game</button>
       <div className="card-grid">
         {cards.map((card) => (
           <Card
@@ -63,9 +72,11 @@ function App() {
             key={card.id}
             handleChoice={handleChoice}
             flipped={card.matched || card === choiceOne || card === choiceTwo}
+            disabled={disabled}
           />
         ))}
       </div>
+      <p>Turns: {turns}</p>
     </div>
   );
 }

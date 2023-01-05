@@ -1,8 +1,10 @@
 import { CardDiv, Front, Back, Flipper } from "./Card.styled";
 
-export function Card({ data, handleChoice, flipped }) {
+export function Card({ data, handleChoice, flipped, disabled }) {
   function handleClick() {
-    handleChoice(data);
+    if (!disabled) {
+      handleChoice(data);
+    }
   }
 
   return (
