@@ -12,7 +12,7 @@ export function Card({ data, handleChoice, flipped, disabled }) {
       <Flipper className={flipped ? "flipped" : ""}>
         <Front src={data.src} alt="card front" width="150" />
         <Back
-          src="../img/card.png"
+          src="img/card.png"
           alt="card back"
           width="150"
           onClick={handleClick}
