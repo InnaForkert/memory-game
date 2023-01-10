@@ -1,9 +1,14 @@
 import { CardDiv, Front, Back, Flipper } from "./Card.styled";
+import useSound from 'use-sound';
+import stepSound from '../sounds/step.wav';
 
 export function Card({ data, handleChoice, flipped, disabled }) {
+  const [playSound] = useSound(stepSound);
+
   function handleClick() {
     if (!disabled) {
       handleChoice(data);
+      playSound();
     }
   }
 

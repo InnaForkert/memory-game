@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Card } from "./components/Card";
+import useSound from "use-sound";
+import victorySound from "./sounds/victory.wav";
 
 const cardImages = [
   { src: "img/flower1.png", matched: false },
@@ -12,6 +14,8 @@ const cardImages = [
 ];
 
 function App() {
+  const [playVictory] = useSound(victorySound);
+
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
   const [choiceOne, setChoiceOne] = useState(null);
@@ -39,6 +43,10 @@ function App() {
   useEffect(() => {
     shuffleCards();
   }, []);
+
+  useEffect(() => {
+    if (cards.every((card) => card.matched)) playVictory();
+  }, [cards, playVictory]);
 
   function makeATurn() {
     setChoiceTwo(null);
